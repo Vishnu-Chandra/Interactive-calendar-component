@@ -1,36 +1,102 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Overview
 
-## Getting Started
+This project is an interactive calendar component built using Next.js (React) and Tailwind CSS. The goal was to recreate a physical wall calendar UI while adding useful interactive features like date range selection and note-taking.
 
-First, run the development server:
+I focused on building a clean, responsive, and user-friendly interface while also following good frontend engineering practices such as component separation and modular code structure.
+
+## Features
+
+### 📅 Wall Calendar UI
+
+- Inspired by a physical hanging calendar design
+- Includes a hero image and structured layout
+
+### 🔵 Date Range Selection
+
+- Users can select a start and end date
+- Selected range is visually highlighted with smooth styling
+
+### 📝 Notes System
+
+- Monthly notes
+- Notes for selected date ranges
+- Data is stored using localStorage
+
+### 📱 Responsive Design
+
+- Works across desktop and mobile devices
+- Layout adapts from side-by-side to stacked
+
+### 🎨 Dynamic Themes
+
+- Each month has a different visual theme and image
+
+### 🎯 Extra Enhancements
+
+- Holiday markers
+- "Today" indicator
+- Smooth animations and hover effects
+
+## Tech Stack
+
+- Next.js (React)
+- TypeScript
+- Tailwind CSS
+- LocalStorage (for persistence)
+
+## Project Structure
+
+I followed a feature-based structure to keep the code modular and scalable:
+
+```txt
+features/calendar/
+components/ -> UI components
+hooks/ -> state and logic (custom hooks)
+utils/ -> reusable functions
+types/ -> TypeScript types
+```
+
+This separation helps in maintaining clean code and makes the project easier to extend.
+
+## How to Run Locally
+
+Clone the repository:
+
+```bash
+git clone
+```
+
+Navigate to the project folder:
+
+```bash
+cd interactive-calendar-component
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open in browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```txt
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Key Decisions
 
-## Learn More
+- Used Tailwind CSS for faster and consistent UI development
+- Implemented custom hooks to separate business logic from UI
+- Stored notes in localStorage to avoid backend complexity
+- Designed the UI to closely match the provided reference while improving usability
 
-To learn more about Next.js, take a look at the following resources:
+## Final Thoughts
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project helped me improve both UI design and frontend architecture skills. I focused not just on building features, but also on writing clean and maintainable code.
