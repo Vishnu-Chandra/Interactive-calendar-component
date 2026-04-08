@@ -31,7 +31,7 @@ export default function HeroSection({
         style={{ animation: "hero-kenburns 14s ease-in-out infinite alternate" }}
       />
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent transition-opacity duration-300" aria-hidden="true" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/20 to-transparent" aria-hidden="true" />
 
       <div
         className="absolute bottom-0 left-[-1px] h-[clamp(3.75rem,9vw,5.5rem)] w-[54%] shadow-[0_-8px_24px_rgba(0,0,0,0.12)] [clip-path:polygon(0_100%,100%_100%,100%_26%)]"

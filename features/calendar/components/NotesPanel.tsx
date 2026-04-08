@@ -21,6 +21,7 @@ export default function NotesPanel({
   onSelectionNoteChange,
   onClearSelection,
 }: NotesPanelProps) {
+  const hasSelection = rangeStart !== null;
   const rangeLabel =
     rangeStart === null
       ? "No range selected"
@@ -30,6 +31,7 @@ export default function NotesPanel({
 
   return (
     <aside
+      data-notes-panel="true"
       className="flex flex-col gap-3 border-b border-b-[#e7ebf1] pb-2 md:border-b-0 md:border-r md:border-r-[#e7ebf1] md:pb-0 md:pr-3"
       aria-label="Notes"
     >
@@ -55,7 +57,7 @@ export default function NotesPanel({
             type="button"
             className="min-h-7 cursor-pointer rounded-full border border-[#d8dfeb] bg-white px-2.5 py-0.5 text-[0.62rem] font-semibold text-[#3c5b7d] transition hover:bg-blue-50 disabled:cursor-not-allowed disabled:opacity-45"
             onClick={onClearSelection}
-            disabled={rangeStart === null}
+            disabled={!hasSelection}
           >
             Clear
           </button>
@@ -65,8 +67,8 @@ export default function NotesPanel({
           value={selectionNote}
           onChange={(event) => onSelectionNoteChange(event.target.value)}
           className="min-h-[4.6rem] w-full resize-y rounded-md border border-[#e5e7eb] bg-[repeating-linear-gradient(white,white_22px,#e5e7eb_23px)] px-2.5 py-1.5 text-[0.8rem] leading-[22px] text-[#2c3341] placeholder:text-[#8b90a0] focus:border-blue-300 focus:outline-none focus:ring-2 focus:ring-blue-100 disabled:cursor-not-allowed disabled:opacity-60 md:min-h-[5.2rem]"
-          placeholder="Write note for the selected range..."
-          disabled={rangeStart === null}
+          placeholder={hasSelection ? "Write note for the selected range..." : "Select a date range to add notes."}
+          disabled={!hasSelection}
         />
       </section>
     </aside>

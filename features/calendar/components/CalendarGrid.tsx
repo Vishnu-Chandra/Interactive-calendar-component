@@ -1,4 +1,5 @@
-import DayCell from "@/components/DayCell";
+import { useCallback } from "react";
+import DayCell from "./DayCell";
 
 type CalendarGridProps = {
   monthLabel: string;
@@ -37,6 +38,39 @@ export default function CalendarGrid({
       : rangeEnd === null
         ? `${monthLabel} ${rangeStart} selected as start date`
         : `${monthLabel} ${rangeStart} - ${monthLabel} ${rangeEnd}`;
+
+  const handleGridKeyDown = useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+    const target = event.target as HTMLElement;
+    if (target.getAttribute("data-day-cell") !== "true") {
+      return;
+    }
+
+    const key = event.key;
+    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown", "Home", "End"].includes(key)) {
+      return;
+    }
+
+    const dayButtons = Array.from(
+      event.currentTarget.querySelectorAll<HTMLButtonElement>('[data-day-cell="true"]'),
+    );
+    const currentIndex = dayButtons.indexOf(target as HTMLButtonElement);
+    if (currentIndex < 0) {
+      return;
+    }
+
+    event.preventDefault();
+
+    let nextIndex = currentIndex;
+    if (key === "ArrowLeft") nextIndex -= 1;
+    if (key === "ArrowRight") nextIndex += 1;
+    if (key === "ArrowUp") nextIndex -= 7;
+    if (key === "ArrowDown") nextIndex += 7;
+    if (key === "Home") nextIndex = currentIndex - (currentIndex % 7);
+    if (key === "End") nextIndex = currentIndex + (6 - (currentIndex % 7));
+
+    nextIndex = Math.max(0, Math.min(dayButtons.length - 1, nextIndex));
+    dayButtons[nextIndex]?.focus();
+  }, []);
 
   return (
     <section
@@ -77,7 +111,7 @@ export default function CalendarGrid({
         {weekdays.map((day, index) => (
           <div
             key={day}
-              className="flex h-8 w-full items-center justify-center text-xs font-semibold tracking-wide text-gray-600"
+            className="flex h-8 w-full items-center justify-center text-xs font-semibold tracking-wide text-gray-600"
             role="columnheader"
           >
             <span className={index > 4 ? "text-sky-600" : undefined}>{day}</span>
@@ -85,14 +119,20 @@ export default function CalendarGrid({
         ))}
       </div>
 
-      <div className="grid grid-cols-7 text-center" role="grid" aria-label="Month days">
-          {days.map((day, index) => {
+      <div
+        className="grid grid-cols-7 text-center"
+        role="grid"
+        aria-label="Month days"
+        onKeyDown={handleGridKeyDown}
+      >
+        {days.map((day, index) => {
           const weekdayIndex = index % 7;
 
           return (
             <DayCell
               key={`${day ?? "empty"}-${index}`}
               day={day}
+              dayIndex={index}
               isStart={day !== null && rangeStart !== null && day === rangeStart}
               isEnd={day !== null && rangeEnd !== null && day === rangeEnd}
               isInRange={
