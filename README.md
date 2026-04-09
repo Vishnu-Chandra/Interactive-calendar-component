@@ -92,10 +92,44 @@ http://localhost:3000
 
 ## Key Decisions
 
-- Used Tailwind CSS for faster and consistent UI development
-- Implemented custom hooks to separate business logic from UI
-- Stored notes in localStorage to avoid backend complexity
-- Designed the UI to closely match the provided reference while improving usability
+* **Tailwind CSS for Styling**
+  I chose Tailwind CSS to build the UI quickly while maintaining consistency in spacing, colors, and responsiveness. It also helped me keep styles close to components instead of managing separate CSS files.
+
+* **Feature-Based Architecture**
+  I organized the project using a feature-based structure (`features/calendar`) to keep all related components, hooks, and utilities together. This improves scalability and makes the code easier to maintain as the project grows.
+
+* **Separation of Concerns**
+  I separated UI components, business logic, and utility functions:
+
+  * Components handle only rendering (UI)
+  * Custom hooks manage state and logic
+  * Utility functions handle reusable calculations
+  This keeps the code clean and easier to debug or extend.
+
+* **Custom Hook for State Management**
+  Instead of keeping all logic inside a single component, I used a custom hook (`useCalendar`) to manage state like selected range, current month, and notes. This makes the main component simpler and more readable.
+
+* **LocalStorage for Persistence**
+  Since the project is frontend-only, I used `localStorage` to persist notes. This allows users to retain their data without needing a backend.
+
+* **Date Range Selection Logic**
+  I implemented normalized range selection (start and end dates are automatically ordered). This ensures consistent behavior even if the user selects dates in reverse order.
+
+* **Responsive Design Approach**
+  The layout adapts based on screen size:
+
+  * Desktop: side-by-side layout (notes + calendar)
+  * Mobile: stacked layout
+  This ensures usability across devices.
+
+* **Reusable Utility Functions**
+  Functions like generating the calendar grid and handling date logic are extracted into utility files. This improves reusability and keeps components focused on UI.
+
+* **Accessibility Considerations**
+  I added ARIA attributes and ensured interactive elements (like date cells) are accessible and provide proper feedback.
+
+* **UI/UX Focus**
+  I focused on subtle animations, clear visual hierarchy, and intuitive interactions (like range highlighting and notes feedback) to make the component feel more like a real product.
 
 ## Final Thoughts
 
