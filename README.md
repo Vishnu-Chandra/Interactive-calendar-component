@@ -37,6 +37,26 @@ I focused on building a clean, responsive, and user-friendly interface while als
 - "Today" indicator
 - Smooth animations and hover effects
 
+## Screenshots
+
+Add your project screenshots here to show the UI in action. Place the image files in `public/screenshots/` and keep the names below, or update the paths to match your files.
+
+### 1. Home Screen
+
+![Home screen screenshot](public/screenshots/screenshot-1.png)
+
+### 2. Date Range Selection
+
+![Date range selection screenshot](public/screenshots/screenshot-2.png)
+
+### 3. Notes Panel
+
+![Notes panel screenshot](public/screenshots/screenshot-3.png)
+
+### 4. Mobile View
+
+![Mobile view screenshot](public/screenshots/screenshot-4.png)
+
 ## Tech Stack
 
 - Next.js (React)
